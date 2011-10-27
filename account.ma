@@ -42,7 +42,7 @@ class Channel(channel.SSHChannel):
             self.sftp.makeConnection(self)
             self.dataReceived = self.sftp.dataReceived
             self.callback(self.sftp)
-        d = self.conn.sendRequest(self, 'subsystem', 
+        d = self.conn.sendRequest(self, 'subsystem',
             common.NS('sftp'), wantReply=1)
         d.addCallbacks(gotResult, gotError)
     def closed(self):
@@ -74,9 +74,9 @@ def account(user, password, host, port):
             mode = filetransfer.FXF_WRITE|filetransfer.FXF_CREAT|filetransfer.FXF_TRUNC
         else:
             mode = filetransfer.FXP_OPEN
-        d = sftp.openFile(".plan", mode, {}) 
+        d = sftp.openFile(".plan", mode, {})
         d.addCallback(gotFile)
-    c = protocol.ClientCreator(reactor, 
+    c = protocol.ClientCreator(reactor,
             Transport, user, password, gotProtocol).connectTCP(host, port)
 
 host = None
