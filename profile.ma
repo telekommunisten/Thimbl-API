@@ -42,7 +42,7 @@ def finger(user, host, port=79):
         c = ClientCreator(reactor, FingerProtocol, user)
         d = c.connectTCP(host, port)
         d.addCallbacks(gotProtocol, error)
-    d = deferLater(reactor, 0, connect)    
+    d = deferLater(reactor, 0, connect)
     return d
 
 user = None
